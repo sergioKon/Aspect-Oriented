@@ -1,4 +1,4 @@
-package com.base.infra;
+package com.base.injector;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,9 @@ import java.net.InetAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.base.common.WebLocation;
+import com.base.common.WrongDataSource;
+import com.base.main.DataSender;
 import com.google.gson.Gson;
 
 public class Validator  {

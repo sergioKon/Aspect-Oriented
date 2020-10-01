@@ -1,4 +1,4 @@
-package com.base.infra;
+package com.base.common;
 
 import java.net.URL;
 import java.util.Locale;

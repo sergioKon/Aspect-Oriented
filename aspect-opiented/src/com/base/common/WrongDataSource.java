@@ -1,4 +1,4 @@
-package com.base.infra;
+package com.base.common;
 
 public class WrongDataSource extends Exception {
     private String provider;
