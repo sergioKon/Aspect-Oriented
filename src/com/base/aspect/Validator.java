@@ -18,7 +18,8 @@ import com.metaData.annotation.Inject;
 @Inject(actors= {"DataSender"})
 public class Validator  {
 	Logger LOGGER = Logger.getLogger(Validator.class.getName());
-	@Before(method= {"send"})
+//	@Before(method= {"send"})
+	@Before(method = "send")
 	public   void  before(DataSender dataSender) {
 	   String host =  dataSender.getUrl().getHost();
 	  try {
