@@ -16,7 +16,7 @@ public class WebLocation {
   @SerializedName(value = "loc", alternate = "location")
   private String  location;
   private String org;
-  private TimeZone timeZone;
+  private String timeZone;
   private URL readme;
 	public String getIp() {
 		return ip;
@@ -56,10 +56,10 @@ public class WebLocation {
 	public void setOrg(String org) {
 		this.org = org;
 	}
-	public TimeZone getTimeZone() {
+	public String getTimeZone() {
 		return timeZone;
 	}
-	public void setTimeZone(TimeZone timeZone) {
+	public void setTimeZone(String timeZone) {
 		this.timeZone = timeZone;
 	}
 	public URL getReadme() {

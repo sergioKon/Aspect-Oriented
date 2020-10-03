@@ -40,7 +40,7 @@ public class DataSender <T extends Validator> {
        // logger.setLevel(Level.CONFIG);
 		//logger.severe(" hi " + logger.getParent().getLevel());
 		
-		URL address=new URL("https://www.bizportal.co.il/");  
+		URL address=new URL("https://www.planetware.com/tourist-attractions/germany-d.htm"); //("https://www.bizportal.co.il/");  
 		DataSender<Validator> dataSender = new DataSender<>(validator, address);
 		dataSender.send();
 	}
