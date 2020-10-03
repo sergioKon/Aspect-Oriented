@@ -1,4 +1,4 @@
-package com.base.injector;
+package com.base.aspect;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,9 +11,14 @@ import com.base.common.WebLocation;
 import com.base.common.WrongDataSource;
 import com.base.main.DataSender;
 import com.google.gson.Gson;
+import com.metaData.annotation.After;
+import com.metaData.annotation.Before;
+import com.metaData.annotation.Inject;
 
+@Inject(actors= {"DataSender"})
 public class Validator  {
 	Logger LOGGER = Logger.getLogger(Validator.class.getName());
+	@Before(method= {"send"})
 	public  <U extends DataSender<? extends Validator>> void  before(U dataSender) {
 	   String host =  dataSender.getUrl().getHost();
 	  try {
@@ -48,7 +53,7 @@ public class Validator  {
 			}
 		return output;
 	}
-	
+	@After(method="send")
 	public void after(DataSender<?> dataSender)  {
 		LOGGER.info(" data from "+ dataSender.getUrl() + " send successful ");
 	}

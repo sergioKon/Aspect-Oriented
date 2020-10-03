@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 import com.base.common.WrongDataSource;
-import com.base.injector.Validator;
+import com.base.aspect.Validator;
 
 // consructor exception 
 // derived level 
@@ -18,7 +18,6 @@ public class DataSender <T extends Validator> {
 		 this.address=address;
 	 }
 	 public void send() {
-		
 		 try {
 			t.before(this); 
 			parseData();
