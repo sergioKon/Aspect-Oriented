@@ -13,15 +13,15 @@ import com.base.common.WrongDataSource;
 import com.google.gson.Gson;
 import com.metaData.annotation.After;
 import com.metaData.annotation.Before;
-import com.metaData.annotation.Inject;
+import com.metaData.annotation.Aspect;
 
-@Inject(actors= {"DataSender"})
-public class Validator  {
+@Aspect(actors= {"DataSender"})
+public class Validator  implements Injector {
 	Logger LOGGER = Logger.getLogger(Validator.class.getName());
-//	@Before(method= {"send"})
 	@Before(method = "send")
-	public   void  before(DataSender dataSender) {
-	   String host =  dataSender.getUrl().getHost();
+	@Override
+	public   void  before(Object dataSender) {
+	   String host = ((DataSender)dataSender).getUrl().getHost();
 	  try {
 			InetAddress address = InetAddress.getByName(host);
 			StringBuilder output = getHostInfo(address);

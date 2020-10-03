@@ -8,13 +8,13 @@ import com.base.common.WrongDataSource;
 import com.base.aspect.Validator;
 
 // derived level 
-public class DataSender {
+public class DataSender implements Worker{
 	private static Logger LOGGER = Logger.getLogger(DataSender.class.getName());
     URL address;
 	 public DataSender(URL address ) {
 		 this.address=address;
 	 }
-	 public void send() {
+	 public void processStart() {
 		 try {
 			parseData();
 
@@ -37,7 +37,7 @@ public class DataSender {
 		
 		URL address=new URL("https://www.planetware.com/tourist-attractions/germany-d.htm"); //("https://www.bizportal.co.il/");  
 		DataSender dataSender = new DataSender(address);
-		dataSender.send();
+		dataSender.processStart();
 	}
 	
 }
