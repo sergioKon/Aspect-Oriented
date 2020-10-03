@@ -1,4 +1,4 @@
-package com.base.main;
+package com.base.actors;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -8,21 +8,18 @@ import com.base.common.WrongDataSource;
 import com.base.aspect.Validator;
 
 // derived level 
-public class DataSender <T extends Validator> {
+public class DataSender {
 	private static Logger LOGGER = Logger.getLogger(DataSender.class.getName());
-	T t;
     URL address;
-	 public DataSender(T t, URL address ) {
-		 this.t= t;
+	 public DataSender(URL address ) {
 		 this.address=address;
 	 }
 	 public void send() {
 		 try {
-			t.before(this); 
 			parseData();
-		    t.after(this);
+
 		} catch (WrongDataSource e) {
-			t.afterThrow(this);
+		//	t.afterThrow(this);
 		}
 	 }
 	private void parseData() throws WrongDataSource {
@@ -39,7 +36,7 @@ public class DataSender <T extends Validator> {
 		//logger.severe(" hi " + logger.getParent().getLevel());
 		
 		URL address=new URL("https://www.planetware.com/tourist-attractions/germany-d.htm"); //("https://www.bizportal.co.il/");  
-		DataSender<Validator> dataSender = new DataSender<>(validator, address);
+		DataSender dataSender = new DataSender(address);
 		dataSender.send();
 	}
 	

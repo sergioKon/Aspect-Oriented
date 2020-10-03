@@ -7,9 +7,9 @@ import java.net.InetAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.base.actors.DataSender;
 import com.base.common.WebLocation;
 import com.base.common.WrongDataSource;
-import com.base.main.DataSender;
 import com.google.gson.Gson;
 import com.metaData.annotation.After;
 import com.metaData.annotation.Before;
@@ -19,7 +19,7 @@ import com.metaData.annotation.Inject;
 public class Validator  {
 	Logger LOGGER = Logger.getLogger(Validator.class.getName());
 	@Before(method= {"send"})
-	public  <U extends DataSender<? extends Validator>> void  before(U dataSender) {
+	public   void  before(DataSender dataSender) {
 	   String host =  dataSender.getUrl().getHost();
 	  try {
 			InetAddress address = InetAddress.getByName(host);
@@ -54,11 +54,11 @@ public class Validator  {
 		return output;
 	}
 	@After(method="send")
-	public void after(DataSender<?> dataSender)  {
+	public void after(DataSender dataSender)  {
 		LOGGER.info(" data from "+ dataSender.getUrl() + " send successful ");
 	}
 	
-	public void afterThrow(DataSender<?> dataSender) {
+	public void afterThrow(DataSender dataSender) {
 		LOGGER.severe(" Something crashed, for compete information read the message");
 		  // send special message 
 		 //
