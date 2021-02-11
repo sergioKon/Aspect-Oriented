@@ -1,4 +1,4 @@
-package com.base.injector;
+package com.base.aspect;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,15 +7,21 @@ import java.net.InetAddress;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.base.actors.DataSender;
 import com.base.common.WebLocation;
 import com.base.common.WrongDataSource;
-import com.base.main.DataSender;
 import com.google.gson.Gson;
+import com.metaData.annotation.After;
+import com.metaData.annotation.Before;
+import com.metaData.annotation.Aspect;
 
-public class Validator  {
+@Aspect(actors= {"DataSender"})
+public class Validator  implements Injector {
 	Logger LOGGER = Logger.getLogger(Validator.class.getName());
-	public  <U extends DataSender<? extends Validator>> void  before(U dataSender) {
-	   String host =  dataSender.getUrl().getHost();
+	@Before(method = "send")
+	@Override
+	public   void  before(Object dataSender) {
+	   String host = ((DataSender)dataSender).getUrl().getHost();
 	  try {
 			InetAddress address = InetAddress.getByName(host);
 			StringBuilder output = getHostInfo(address);
@@ -48,12 +54,12 @@ public class Validator  {
 			}
 		return output;
 	}
-	
-	public void after(DataSender<?> dataSender)  {
+	@After(method="send")
+	public void after(DataSender dataSender)  {
 		LOGGER.info(" data from "+ dataSender.getUrl() + " send successful ");
 	}
 	
-	public void afterThrow(DataSender<?> dataSender) {
+	public void afterThrow(DataSender dataSender) {
 		LOGGER.severe(" Something crashed, for compete information read the message");
 		  // send special message 
 		 //

@@ -2,8 +2,6 @@ package com.base.common;
 
 import java.net.URL;
 import java.util.Locale;
-import java.util.TimeZone;
-
 import com.google.gson.annotations.SerializedName;
 
 public class WebLocation {
