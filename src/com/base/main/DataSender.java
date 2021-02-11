@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 import com.base.common.WrongDataSource;
 import com.base.injector.Validator;
 
-// consructor exception 
 // derived level 
 public class DataSender <T extends Validator> {
 	private static Logger LOGGER = Logger.getLogger(DataSender.class.getName());
